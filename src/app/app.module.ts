@@ -11,7 +11,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RecipesHomeComponent } from './dashboard/recipes/recipes-home/recipes-home.component';
 import { UserComponent } from './dashboard/user/user.component';
-import { NewRecipeFormComponent } from './dashboard/recipes/new-recipe-form/new-recipe-form.component'
+import { NewRecipeFormComponent } from './dashboard/recipes/new-recipe-form/new-recipe-form.component';
+import { SettingsComponent } from './dashboard/user/settings/settings.component';
+import { RecipeDetailComponent } from './dashboard/recipes/recipe-detail/recipe-detail.component';
+import { RecipeListComponent } from './dashboard/recipes/recipe-list/recipe-list.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { NewRecipeFormComponent } from './dashboard/recipes/new-recipe-form/new-
     NavbarComponent,
     RecipesHomeComponent,
     UserComponent,
-    NewRecipeFormComponent
+    NewRecipeFormComponent,
+    SettingsComponent,
+    RecipeDetailComponent,
+    RecipeListComponent
   ],
   imports: [
     BrowserModule,

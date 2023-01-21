@@ -1,19 +1,21 @@
 <div class="container login-form-container">
-    <h1>Login</h1>
-    <form class="form-group" [formGroup]="loginForm" (ngSubmit)="handleLogin()" autocomplete="off">
-        <label for="userName" class="form-label">Username:</label>
-        <input type="text" formControlName="username" name="userName" class="form-control">
-
-        <label for="password" class="form-label">Password:</label>
-        <input type="password" formControlName="password" name="password" class="form-control">
-
-        <div class="mt-3">
-            <button type="submit" class="btn btn-primary">Log In</button>
-            <button type="button" class="btn btn-secondary">Clear Form</button>
-        </div>
-
-        <div class="mt-3">
-            <p>Not a member? <span><a [routerLink]="['/signup']" class="link">Sign Up</a></span></p>
-        </div>
-    </form>
+    <div class="container">
+        <h1>Login</h1>
+        <form class="form-group" [formGroup]="loginForm" (ngSubmit)="handleLogin()" autocomplete="off">
+            <label for="userName" class="form-label">Username:</label>
+            <input type="text" formControlName="username" name="userName" class="form-control">
+            
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" formControlName="password" name="password" class="form-control">
+            
+            <div class="mt-3">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-box-arrow-in-right"></i> Log In</button>
+                <button type="button" class="btn btn-secondary"><i class="bi bi-x-circle"></i> Clear Form</button>
+            </div>
+            
+            <div class="mt-3">
+                <p>Not a member? <span><a [routerLink]="['/signup']" class="link">Sign Up</a></span></p>
+            </div>
+        </form>
+    </div>
 </div>

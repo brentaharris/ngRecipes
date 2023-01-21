@@ -1,0 +1,18 @@
+<div>
+  <div class="input-group mb-3 w-50">
+    <input type="text" class="form-control" placeholder="Search Your Recipes" aria-label="search" aria-describedby="button-addon2">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
+  </div>
+
+  <div role="button" *ngFor="let recipe of recipes" class="col-md-4 col-sm-12">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{recipe.name}}</h5>
+        <p class="card-text">{{recipe.description}}</p>
+        <div class="" *ngFor="let tag of recipe.tags">
+          <div class="badge bg-primary">{{tag}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

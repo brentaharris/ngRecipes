@@ -24,6 +24,6 @@ export class LoginFormComponent implements OnInit {
 
   handleLogin(): void {
     console.log(this.loginForm.value)
-    this.router.navigate(['/dashboard'])
+    this.router.navigate(['/user/dashboard'])
   }
 }
