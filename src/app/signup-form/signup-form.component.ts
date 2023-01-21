@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { FormGroup, FormControl } from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { HttpClient } from '@angular/common/http'
 
 @Component({
   templateUrl: './signup-form.component.html',
@@ -11,18 +12,22 @@ import { FormGroup, FormControl } from '@angular/forms'
 export class SignupFormComponent implements OnInit {
   signUpForm!: FormGroup
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
-      username: new FormControl(),
-      password: new FormControl()
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
     })
   }
 
   handleSignUp():void {
-    console.log('You have successfully signed up')
-    this.router.navigate(['/login'])
+    
+    if (this.signUpForm.valid) {
+      this.http.post('https://recipes-3664f-default-rtdb.firebaseio.com/users.json', this.signUpForm.value).subscribe(response => console.log(response))
+
+      this.router.navigate(['/login'])
+    } 
   }
 
   cancel() {
