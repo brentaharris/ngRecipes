@@ -1,11 +1,28 @@
 <div>
-  <div class="input-group mb-3 w-50">
-    <input type="text" class="form-control" placeholder="Search Your Recipes" aria-label="search" aria-describedby="button-addon2">
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
+  <div class="row text-center">
+    <div class="col-md-4">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search Your Recipes" aria-label="search" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <button class="btn btn-primary mx-1">All</button>
+      <button class="btn btn-primary mx-1" disabled>Breakfast</button>
+      <button class="btn btn-primary mx-1" disabled>Lunch</button>
+      <button class="btn btn-primary mx-1" disabled>Dinner</button>
+      <button class="btn btn-primary mx-1" disabled>Snacks</button>
+    </div>
+    
+    <div class="col-md-4">
+      <button class="btn btn-secondary"><i class="bi bi-app"></i></button>
+      <button class="btn btn-secondary" disabled><i class="bi bi-list-ul"></i></button>
+    </div>
   </div>
 
   <div role="button" *ngFor="let recipe of recipes" class="col-md-4 col-sm-12">
-    <div class="card mb-3">
+    <div class="card mb-3" [routerLink]="['/user/recipes', recipe.id]">
       <div class="card-body">
         <h5 class="card-title">{{recipe.name}}</h5>
         <p class="card-text">{{recipe.description}}</p>

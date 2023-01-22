@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-new-recipe-form',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./new-recipe-form.component.css']
 })
 export class NewRecipeFormComponent {
+  constructor(private router: Router) { }
 
+  onBack(): void {
+    this.router.navigate(['user/recipes'])
+  }
 }
