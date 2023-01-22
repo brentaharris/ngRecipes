@@ -2,10 +2,13 @@ export interface Recipe {
   id: number
   name: string
   description: string
+  recipeImg?: string
+  cookTime: string
   ingredients: string[]
-  cookTime?: string
-  tags?: string[]
   directions: string
+  rating?: number
+  public?: boolean
+  tags?: string[]
 }
 
 
@@ -18,6 +21,7 @@ export const RECIPES: Recipe[] = [
         ingredients: ['Cheese', 'Eggs', 'Bacon'],
         cookTime: '15 minutes',
         tags: ['Breakfast', 'Easy'],
+        //make directions an array of steps?
         directions: 'In one bowl, combine the Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde voluptatem natus odio dolorum nam reiciendis fugit velit dolores in inventore? Soluta dicta accusantium nostrum saepe.'
     },
     {
