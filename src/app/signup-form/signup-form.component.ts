@@ -23,10 +23,10 @@ export class SignupFormComponent implements OnInit {
     })
   }
 
-  handleSignUp():void {
+  handleSignUp(): void {
     
     if (this.signUpForm.valid) {
-      this.http.post('https://recipes-3664f-default-rtdb.firebaseio.com/users.json', this.signUpForm.value).subscribe(response => {
+      this.http.post("will need url here", this.signUpForm.value).subscribe(response => {
         console.log(response)
         if (response) {
           this.displaySuccess = true

@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
 import { Router } from '@angular/router'
+import { Subscription, Observable } from 'rxjs'
+import { UserService } from '../dashboard/user/user.service'
 
 @Component({
   selector: 'app-login-form',
@@ -11,8 +14,10 @@ import { Router } from '@angular/router'
 })
 export class LoginFormComponent implements OnInit {
   loginForm!: FormGroup
+  data!: any
 
-  constructor(private router: Router) {}
+  private loginUrl = 'https://jsonplaceholder.typicode.com/posts'
+  constructor(private router: Router, private http: HttpClient) {}
 
 
   ngOnInit(): void {
@@ -22,8 +27,9 @@ export class LoginFormComponent implements OnInit {
     })
   }
 
-  handleLogin(): void {
-    console.log(this.loginForm.value)
-    this.router.navigate(['/user/dashboard'])
+  handleLogin(): any {
+    // console.log(this.loginForm.value)
+    // this.router.navigate(['/user/dashboard'])
+    this.data = this.http.get(this.loginUrl)
   }
 }

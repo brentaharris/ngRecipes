@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
 import { HttpClientModule } from '@angular/common/http'
-import { AngularFireModule } from '@angular/fire/compat'
 
-import { environment } from 'src/environments/environments'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -37,9 +35,7 @@ import { RecipeListComponent } from './dashboard/recipes/recipe-list/recipe-list
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase)
-    
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
