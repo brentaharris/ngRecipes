@@ -5,7 +5,7 @@ const router = express.Router()
 import controller from '../controllers/User.controller'
 
 
-router.get('/:userId', controller.getUserById)
+router.get('/user/:userId', controller.getUserById)
 router.post('/signup', controller.createUser)
 router.delete('/user/:userId', controller.deleteUser)
 
