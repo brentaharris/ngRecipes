@@ -15,7 +15,7 @@ export class SignupFormComponent implements OnInit {
   errorMessage!: string
   displaySuccess: boolean = false
   displayError: boolean = false
-  signupUrl: string = 'http://localhost:3000/users/signup'
+  signupUrl: string = 'http://localhost:3000/user/signup'
 
   constructor(private router: Router, private http: HttpClient) { }
 

@@ -6,9 +6,9 @@ import controller from '../controllers/userController'
 const router = express.Router()
 
 // router.get('/', controller.getAllUsers) //eventually will need authentication and loading/redirecting to dashboard
-router.get('/user/:userId', controller.getUserById)
+router.get('/:userId', controller.getUserById)
 router.post('/signup', controller.createUser)
-router.delete('/user/:userId', controller.deleteUser)
+router.delete('/:userId', controller.deleteUser)
 
 
 export { router }// finally works

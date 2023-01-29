@@ -43,7 +43,7 @@ app.get('/login', (req: Request, res: Response) => {
     res.send({ "message": "Successfully logged in..."})
 })
 
-app.use('/users', userRouter) //causing type error 
+app.use('/user', userRouter) //causing type error 
 
 app.use('*', (req: Request, res: Response) => {
     res.status(404).send({"error": "not found"})
