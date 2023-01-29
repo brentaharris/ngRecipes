@@ -11,7 +11,11 @@ import { HttpClient } from '@angular/common/http'
 })
 export class SignupFormComponent implements OnInit {
   signUpForm!: FormGroup
+  signupMessage!: any
+  errorMessage!: string
   displaySuccess: boolean = false
+  displayError: boolean = false
+  signupUrl: string = 'http://localhost:3000/signup'
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -23,23 +27,27 @@ export class SignupFormComponent implements OnInit {
     })
   }
 
-  handleSignUp(): void {
-    
+  handleSignup(): any {
     if (this.signUpForm.valid) {
-      this.http.post("will need url here", this.signUpForm.value).subscribe(response => {
-        console.log(response)
-        if (response) {
+      this.http.post<any>(this.signupUrl, this.signUpForm.value).subscribe({
+        next: (res) => console.log(res),
+        error: (e) => {
+          console.error(e)
+          this.displayError = true
+          this.errorMessage = "Signup Error"
+        },
+        complete: () => {
           this.displaySuccess = true
-          setTimeout(() => {
-            this.router.navigate(['/login'])
-          }, 3000)
+          this.signupMessage = 'User signup success'
         }
       })
+    }
 
-    } 
+    //success signup can navigate to /login
   }
 
-  cancel() {
+
+  cancel(): void {
     this.router.navigate(['/login'])
   }
 }
