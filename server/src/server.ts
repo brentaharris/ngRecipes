@@ -1,7 +1,7 @@
 const express = require('express')
 import { Request, Response } from 'express'
-import * as mongoDB from 'mongodb'
-// import * as Mongoose from "mongoose";
+// import * as mongoDB from 'mongodb'
+import mongoose from "mongoose"
 require('dotenv').config('/.env')
 
 
@@ -19,13 +19,14 @@ const corsOptions = {
 }
 
 
-
-//?? wtf is going on??
-const client: mongoDB.MongoClient = new mongoDB.MongoClient(process.env.RECIPE_APP_DB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-
+mongoose
+    .connect(String(process.env.RECIPE_APP_DB_URI))
+    .then(() => {
+        console.log('Connected to Recipe App Database (MongoDB)')
+    })
+    .catch((error) => {
+        console.log(error)
+    })
 
 
 
