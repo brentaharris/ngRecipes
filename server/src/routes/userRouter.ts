@@ -1,12 +1,16 @@
-export {} //fixed block scoped variable bug in typescript
+// export {} //fixed block scoped variable bug in typescript?
 
-const express = require('express')
+import express from 'express'
+import controller from '../controllers/userController'
+
 const router = express.Router()
-import controller from '../controllers/User.controller'
 
-
+// router.get('/', controller.getAllUsers) //eventually will need authentication and loading/redirecting to dashboard
 router.get('/user/:userId', controller.getUserById)
 router.post('/signup', controller.createUser)
 router.delete('/user/:userId', controller.deleteUser)
 
-export default router
+
+export { router }// finally works
+// module.exports = router // <-- also not fucking working
+// exports = router // <-- also also not fucking working

@@ -15,15 +15,16 @@ export class SignupFormComponent implements OnInit {
   errorMessage!: string
   displaySuccess: boolean = false
   displayError: boolean = false
-  signupUrl: string = 'http://localhost:3000/signup'
+  signupUrl: string = 'http://localhost:3000/users/signup'
 
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required)
+      // password: new FormControl('', Validators.required),
+      // confirmPassword: new FormControl('', Validators.required)
     })
   }
 
@@ -43,7 +44,10 @@ export class SignupFormComponent implements OnInit {
       })
     }
 
-    //success signup can navigate to /login
+    //if sign up user completes w/o error, navigate to login page
+    setTimeout(() => {
+      this.router.navigate(['/login'])
+    }, 3000);
   }
 
 
