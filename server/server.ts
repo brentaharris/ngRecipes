@@ -1,8 +1,9 @@
 const express = require('express')
 import { Request, Response } from 'express'
-// import * as mongoDB from 'mongodb'
 import mongoose from "mongoose"
 require('dotenv').config('/.env')
+
+import * as userRoutes from './src/routes/userRouter'
 
 
 const cors = require('cors')
@@ -15,9 +16,9 @@ app.use(express.json())
 
 const corsOptions = {
     origin: '*',
-    methods: ['GET', 'POST']
+    methods: ['GET', 'POST', 'DELETE']
 }
-mongoose.set('strictQuery', false)
+mongoose.set('strictQuery', false) //clears warning of deprecation in console.
 
 mongoose
     .connect(String(process.env.RECIPE_APP_DB_URI))
@@ -29,16 +30,12 @@ mongoose
     })
 
 
-
 app.get('/login', cors(corsOptions), (req: Request, res: Response) => {
     res.send({ "message": "Successfully logged in..."})
 })
 
-app.post('/signup', cors(corsOptions), (req: any, res: any) => {
-    //todo:
-    //implement mongodb connection and sign user up
-    res.send({ "message": `User ${req.body.email} has signed up successfully`})
-})
+app.use('/users', cors(corsOptions), userRoutes)
+
 
 app.use('*', (req: Request, res: Response) => {
     res.status(404).send({"error": "not found"})
