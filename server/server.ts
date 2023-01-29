@@ -17,7 +17,7 @@ const corsOptions = {
     origin: '*',
     methods: ['GET', 'POST']
 }
-
+mongoose.set('strictQuery', false)
 
 mongoose
     .connect(String(process.env.RECIPE_APP_DB_URI))
