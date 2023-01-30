@@ -50,7 +50,7 @@ app.use('*', (req: Request, res: Response) => {
 })
 
 
-/** ERROR HANDLEING FOR ROUTES **/
+/** ERROR HANDLING FOR ROUTES **/
 app.use((req: Request, res: Response, next: NextFunction) => {
     const error = new Error('not found')
 

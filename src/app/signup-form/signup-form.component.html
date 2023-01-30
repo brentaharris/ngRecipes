@@ -10,7 +10,7 @@
         <span class="text-danger" *ngIf="signUpForm.get('email')?.invalid && (signUpForm.get('email')?.dirty || signUpForm.get('email')?.touched)"> Must be in email format*</span>
         <input type="email" formControlName="email" name="email" class="form-control" required>
 
-        <!-- <label for="password" class="form-label">Password:</label>
+        <label for="password" class="form-label">Password:</label>
         <span class="text-danger" 
             *ngIf="signUpForm.get('password')?.invalid && 
             (signUpForm.get('password')?.dirty || signUpForm.get('password')?.touched)"> Required*
@@ -22,7 +22,7 @@
             *ngIf="signUpForm.get('confirmPassword')?.invalid && 
             (signUpForm.get('confirmPassword')?.dirty || signUpForm.get('confirmPassword')?.touched)"> Required*
         </span>
-        <input type="password" formControlName="confirmPassword" name="confirmPassword" class="form-control" required> -->
+        <input type="password" formControlName="confirmPassword" name="confirmPassword" class="form-control" required>
 
         <div class="mt-3">
             <button type="submit" class="btn btn-primary"><i class="bi bi-box-arrow-in-right"></i> Register</button>

@@ -2,18 +2,23 @@ import { NextFunction, Request, Response } from "express"
 import mongoose from "mongoose"
 import { User } from "../models/user"
 
-const createUser = (req: Request, res: Response, next: NextFunction) => {
-    const { name, email } = req.body
+const createUser = async (req: Request, res: Response, next: NextFunction) => {
+    let { name, email, password } = req.body
+    if(!email || !password) return res.send('Must include email or password')
 
     const user = new User({
         _id: new mongoose.Types.ObjectId(),
         name,
-        email
+        email,
+        password
     })
-
+    //TODO add code to check if user exsists first before saving.
     return user
             .save()
-            .then((user) => res.status(201).json({ user }))
+            .then((user) => {
+                res.status(201).json({ user })
+                console.log(user)
+            })
             .catch((error) => res.status(500).json({ error }))
 }
 
