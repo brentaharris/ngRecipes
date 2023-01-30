@@ -28,6 +28,7 @@
             <button type="submit" class="btn btn-primary"><i class="bi bi-box-arrow-in-right"></i> Register</button>
             <button type="button" class="btn btn-secondary" (click)="cancel()"><i class="bi bi-x-circle"></i> Cancel</button>
         </div>
+        <!-- These need more styling -->
         <div *ngIf="displaySuccess" class="mt-3">
             <h3 class="text-success">{{ signupMessage }}</h3>
             <em>Redirecting to login page...</em>    
@@ -35,6 +36,9 @@
         <div *ngIf="displayError" class="mt-3">
             <h3 class="text-danger">{{ errorMessage }}</h3>
             <em>Try again, if error persists, please email us.</em>    
+        </div>
+        <div *ngIf="isLoading" class="mt-3">
+            <h3 class="text-warning">Attempting to create user account...</h3>
         </div>
     </form>
 </div>

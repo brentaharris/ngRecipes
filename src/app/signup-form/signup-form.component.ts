@@ -15,6 +15,7 @@ export class SignupFormComponent implements OnInit {
   errorMessage!: string
   displaySuccess: boolean = false
   displayError: boolean = false
+  isLoading: boolean = false
   signupUrl: string = 'http://localhost:3000/user/signup'
 
   constructor(private router: Router, private http: HttpClient) { }
@@ -30,24 +31,31 @@ export class SignupFormComponent implements OnInit {
 
   handleSignup(): any {
     if (this.signUpForm.valid) {
+      this.isLoading = true
       this.http.post<any>(this.signupUrl, this.signUpForm.value).subscribe({
-        next: (res) => console.log(res),
+        next: (res) => {
+          console.log(res)
+        },
         error: (e) => {
           console.error(e)
           this.displayError = true
+          this.isLoading = false
           this.errorMessage = "Signup Error"
+          setTimeout(() => {
+            this.displayError = false
+          }, 3000)
         },
         complete: () => {
           this.displaySuccess = true
+          this.isLoading = false
           this.signupMessage = 'User signup success'
+          //if sign up user completes w/o error, navigate to login page
+          setTimeout(() => {
+            this.router.navigate(['/login'])
+          }, 3000);
         }
       })
     }
-
-    //if sign up user completes w/o error, navigate to login page
-    setTimeout(() => {
-      this.router.navigate(['/login'])
-    }, 3000);
   }
 
 
