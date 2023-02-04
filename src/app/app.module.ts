@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
 import { HttpClientModule } from '@angular/common/http'
 
+import { AppRouteGuardService } from 'src/app.routeguard.service'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -37,7 +38,7 @@ import { RecipeListComponent } from './dashboard/recipes/recipe-list/recipe-list
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AppRouteGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

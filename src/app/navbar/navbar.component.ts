@@ -13,6 +13,6 @@ export class NavbarComponent {
   constructor(private userService: UserService) {}
   
   logOut() {
-    this.userService.userLogOut()
+    this.userService.userLogOutAndNavigateToLogin()
   }
 }

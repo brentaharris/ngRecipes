@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environments';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-settings',
@@ -9,9 +9,9 @@ import { environment } from 'src/environments/environments';
 export class SettingsComponent implements OnInit {
   currentUser!: any
 
-  constructor() {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.currentUser = JSON.parse(sessionStorage.getItem(environment.APP_SESSION_KEY) as string)
+    this.currentUser = this.userService.getCurrentUser()
   }
 }
