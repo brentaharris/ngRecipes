@@ -2,8 +2,8 @@
     <div class="container">
         <h1>Login</h1>
         <form class="form-group" [formGroup]="loginForm" (ngSubmit)="handleLogin()" autocomplete="off">
-            <label for="userName" class="form-label">Username:</label>
-            <input type="text" formControlName="username" name="userName" class="form-control">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" formControlName="email" name="email" class="form-control">
             
             <label for="password" class="form-label">Password:</label>
             <input type="password" formControlName="password" name="password" class="form-control">

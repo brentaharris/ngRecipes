@@ -6,6 +6,7 @@ const router = express.Router()
 // router.get('/', controller.getAllUsers) //eventually will need authentication and loading/redirecting to dashboard
 router.get('/:userId', controller.getUserById)
 router.post('/signup', controller.createUser)
+router.post('/login', controller.loginUser)
 router.delete('/:userId', controller.deleteUser)
 
 

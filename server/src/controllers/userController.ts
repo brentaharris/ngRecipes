@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express"
 import mongoose from "mongoose"
-import { User } from "../models/user"
+import bcrypt from 'bcrypt'
+import { User, IUser} from "../models/user"
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
     let { name, email, password } = req.body
@@ -44,9 +45,30 @@ const deleteUser = (req: Request, res: Response, next: NextFunction) => {
 
     return User
         .findByIdAndDelete(userId)
-        .then((user) => (user ? res.status(200).json({ message: "User Account Deleted"}) : res. status(404).json({ message: "User account not found" })))
+        .then((user) => (user ? res.status(200).json({ message: "User Account Deleted"}) : res.status(404).json({ message: "User account not found" })))
         .catch((error) => res.status(500).json({ error }))
 }
 
+/// ********************************* ///
+const loginUser = async (req: Request, res: Response, next: NextFunction) => {
+    const { email, password } = req.body
+    if(!email || !password) return res.send('Must include email or password')
 
-export default { createUser, getUserById, getAllUsers, deleteUser }
+    User.findOne({ email: email }, (error: Error, user: IUser) => {
+  
+        //compare pw
+       user.comparePasswords(password, (error, isMatch) => {
+            // if (error) res.send({ message: 'Password error'})
+            if (isMatch) {
+                return res.send({ success: "true"})
+            }
+            else {
+                return res.send({ success: 'false'})
+            }
+                
+        })
+    })
+    //add errors
+}
+
+export default { createUser, getUserById, getAllUsers, deleteUser, loginUser }

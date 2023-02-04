@@ -39,6 +39,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 
 /**  ROUTES **/
+
+// make new route
 app.get('/login', (req: Request, res: Response) => {
     res.send({ "message": "Successfully logged in..."})
 })
