@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express"
 import mongoose from "mongoose"
 import bcrypt from 'bcrypt'
-import { User, IUser} from "../models/user"
+import { User, IUser} from "../models/user.model"
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
     let { name, email, password } = req.body
@@ -60,13 +60,14 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
        user.comparePasswords(password, (error, isMatch) => {
             // if (error) res.send({ message: 'Password error'})
             if (isMatch) {
-                return res.send({ success: "true"})
+
+                return res.send({ user, success: true })
             }
             else {
-                return res.send({ success: 'false'})
+                return res.send({ success: false })
             }
-                
         })
+        //add catch error
     })
     //add errors
 }

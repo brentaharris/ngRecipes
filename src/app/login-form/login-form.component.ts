@@ -29,8 +29,21 @@ export class LoginFormComponent implements OnInit {
   handleLogin(): any {
     this.http.post<any>(this.loginUrl, this.loginForm.value).subscribe({
       next: (res) => {
-        console.log(res)
-        if (res.success === 'true'){
+        console.log(res.success)
+
+        const currentUser = { 
+          id: res.user._id, 
+          name: res.user.name, 
+          email: res.user.email, 
+          recipes: res.user.recipes
+        }
+        
+        console.log(currentUser)
+        
+        //save current user to browser for use elsewhere
+        sessionStorage.setItem('recipeAppUser', JSON.stringify(currentUser))
+
+        if (res.success){
           this.loginMessage = "Successfully logged in"
           setTimeout(() => {
             this.router.navigate(['/user/dashboard'])

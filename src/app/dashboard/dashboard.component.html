@@ -1,8 +1,7 @@
 <div class="container">
-    <h1>Welcome User</h1>
+    <h1>Welcome {{ currentUser.name }}</h1>
     <hr>
     <div class="container">
-        <h2>Explore Recipes</h2>
-        <h2>Recipe Friends</h2>
+        <h2>Total Recipes: {{ currentUser.recipes.length }}</h2>
     </div>
 </div>

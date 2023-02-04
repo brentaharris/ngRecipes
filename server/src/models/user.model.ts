@@ -1,26 +1,21 @@
 import { model, Schema, Document } from "mongoose"
+import { IRecipe } from "./recipe.model"
 import bcrypt from 'bcrypt'
 
 
-export interface User {
+export interface IUser extends Document {
     name: string
     email: string
     password: string
-    // organization: Types.ObjectId
+    recipes?: IRecipe[]
+    comparePasswords(userPassword: string, next: (err: Error | null, same: boolean | null) => void): void
 }
-
-
-// const userSchema = new Schema<User>({
-//     name: { type: String, required: true },
-//     email: { type: String, required: true },
-//     password: { type: String, required: true }
-// })
 
 const userSchema: Schema = new Schema<IUser>({
     name: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    // organization: { type: Schema.Types.ObjectId, ref: 'Organization'}
+    recipes: []
 })
 
 
@@ -32,14 +27,6 @@ userSchema.pre('save', async function(next) {
     return next()
 })
 
-//verify password
-// userSchema.methods.comparePassword = async function(userPassword: string) {
-//     try {
-//         return await bcrypt.compare(userPassword, this.password)
-//     } catch (error) {
-//         throw new Error('Password Comparison Failed')
-//     }
-// }
 
 userSchema.methods.comparePasswords = function (
     candidatePassword: string,
@@ -54,12 +41,4 @@ userSchema.methods.comparePasswords = function (
   };
   
 
-
-export interface IUser extends Document {
-    email: string
-    name: string
-    password: string
-    comparePasswords(userPassword: string, next: (err: Error | null, same: boolean | null) => void): void
-}
-
-export const User = model<User>('User', userSchema)
+export const User = model<IUser>('User', userSchema)
