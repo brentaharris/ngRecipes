@@ -15,13 +15,7 @@ export class LoginFormComponent implements OnInit {
   loginForm!: FormGroup
   loginMessage!: any
 
-  loginUrl: string = 'http://localhost:3000/user/login'
-
-  constructor(
-    private router: Router, 
-    private http: HttpClient,
-    private userService: UserService
-  ) {}
+  constructor(private userService: UserService) {}
 
 
   ngOnInit(): void {
