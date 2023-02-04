@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { environment } from 'src/environments/environments'
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +9,7 @@ export class DashboardComponent implements OnInit {
   currentUser!: any
 
   ngOnInit(): void {
-    this.currentUser = JSON.parse(sessionStorage.getItem('recipeAppUser') as string)
+    this.currentUser = JSON.parse(sessionStorage.getItem(environment.APP_SESSION_KEY) as string)
 
   }
 }

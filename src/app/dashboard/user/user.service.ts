@@ -1,5 +1,6 @@
 import { Router } from '@angular/router'
 import { Injectable } from '@angular/core'
+import { environment } from 'src/environments/environments'
 // import { catchError, Observable, tap, throwError } from 'rxjs'
 // import { User } from './user'
 
@@ -17,9 +18,16 @@ export class UserService {
     //     return throwError(() => error)
     // }
 
-    
+    userLogIn(): void {
+        
+    }
+
+    getCurrentUser() { 
+        return JSON.stringify(sessionStorage.getItem(environment.APP_SESSION_KEY) as string)
+    }
+
     userLogOut(): void {
-        sessionStorage.clear()
+        sessionStorage.removeItem(environment.APP_SESSION_KEY)
         this.router.navigate(['/login'])
     }
 }

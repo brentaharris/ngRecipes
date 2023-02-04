@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
+import { environment } from 'src/environments/environments'
 
 @Component({
   selector: 'app-login-form',
@@ -41,7 +42,7 @@ export class LoginFormComponent implements OnInit {
         console.log(currentUser)
         
         //save current user to browser for use elsewhere
-        sessionStorage.setItem('recipeAppUser', JSON.stringify(currentUser))
+        sessionStorage.setItem(environment.APP_SESSION_KEY, JSON.stringify(currentUser))
 
         if (res.success){
           this.loginMessage = "Successfully logged in"
