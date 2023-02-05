@@ -1,7 +1,6 @@
 # Recipes App
 
 ## TODO:
-- Implement add recipe functionality
 - Implement recipe edit ability on recipe detail pages
 - Implement delete recipe button
 - Implement delete all recipes button
@@ -17,5 +16,6 @@
 
 ## Done:
 - Instate Route Guards
+- Implement add recipe functionality
 - Migrate user login ability to user service
 - Display user recipes, if no recipes, report empty recipe list
