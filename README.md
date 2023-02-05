@@ -18,3 +18,4 @@
 ## Done:
 - Instate Route Guards
 - Migrate user login ability to user service
+- Display user recipes, if no recipes, report empty recipe list
