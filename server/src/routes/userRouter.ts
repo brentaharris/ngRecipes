@@ -8,6 +8,8 @@ router.get('/:userId', controller.getUserById)
 
 router.get('/:userId/allrecipes', controller.getAllRecipesByUserId)
 
+router.get('/:userId/recipe/:recipeId', controller.getUserRecipeById)
+
 router.post('/:userId/newrecipe', controller.createNewRecipe)
 
 router.post('/signup', controller.createUser)

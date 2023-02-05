@@ -85,6 +85,14 @@ const getAllRecipesByUserId = async (req: Request, res: Response, next: NextFunc
 }
 
 
+const getUserRecipeById = async (req: Request, res: Response, next: NextFunction) => {
+    const { userId, recipeId } = req.params
+
+    return User.findOne({ _id: userId })
+        .then(user => res.send(user?.recipes?.find(recipe => recipe._id == recipeId)))
+}
+
+
 const createNewRecipe = async (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.userId
 
@@ -120,5 +128,6 @@ export default {
     deleteUser, 
     loginUser,
     getAllRecipesByUserId,
-    createNewRecipe
+    createNewRecipe,
+    getUserRecipeById
 }

@@ -1,7 +1,7 @@
 <div *ngIf="recipe">
     <h1>{{recipe.title}}</h1>
     <p>Description: {{recipe.description}}</p>
-    <p>Cooktime: {{recipe.cookTime}}</p>
+    <p>Cooktime: {{recipe.cookTime}} minutes</p>
     <ul *ngFor="let ingredient of recipe.ingredients">
         <li>{{ingredient}}</li>
     </ul>

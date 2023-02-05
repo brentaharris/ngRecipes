@@ -20,6 +20,14 @@ export class RecipeService {
 		.pipe(map((response: Recipe[]) => { return response }))
 	}
 
+
+	getRecipeById(recipeId: string): Observable<Recipe> {
+		const currentUser = this.userService.getCurrentUser()
+
+		return this.http.get<Recipe>(`http://localhost:3000/user/${currentUser.id}/recipe/${recipeId}`)
+		.pipe(map((response: Recipe) => { return response }))
+	}
+
 	
 	createRecipe(formValues: any) {
 		const currentUser = this.userService.getCurrentUser()
