@@ -20,16 +20,21 @@
       <button class="btn btn-secondary" disabled><i class="bi bi-list-ul"></i></button>
     </div>
   </div>
-
-  <div role="button" *ngFor="let recipe of recipes" class="col-md-4 col-sm-12">
-    <div class="card mb-3" [routerLink]="['/user/recipes', recipe.id]">
-      <div class="card-body">
-        <h5 class="card-title">{{recipe.name}}</h5>
-        <p class="card-text">{{recipe.description}}</p>
-        <div class="" *ngFor="let tag of recipe.tags">
-          <div class="badge bg-primary">{{tag}}</div>
+  <div *ngIf="recipes.length === 0">
+    <h3>No recipes to display</h3>
+  </div>
+  <div *ngIf="recipes.length > 0">
+    <div role="button" *ngFor="let recipe of recipes" class="col-md-4 col-sm-12">
+      <div class="card mb-3" [routerLink]="['/user/recipes', recipe.id]">
+        <div class="card-body">
+          <h5 class="card-title">{{recipe.name}}</h5>
+          <p class="card-text">{{recipe.description}}</p>
+          <div class="" *ngFor="let tag of recipe.tags">
+            <div class="badge bg-primary">{{tag}}</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+</div>
+
 </div>

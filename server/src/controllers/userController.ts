@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express"
 import mongoose from "mongoose"
-import bcrypt from 'bcrypt'
 import { User, IUser} from "../models/user.model"
+import { IRecipe } from "../models/recipe.model"
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
     let { name, email, password } = req.body
@@ -72,4 +72,40 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
     //add errors
 }
 
-export default { createUser, getUserById, getAllUsers, deleteUser, loginUser }
+
+
+/* RECIPE FUNCTIONS  */
+const getAllRecipesByUserId = async (req: Request, res: Response, next: NextFunction) => {
+    const userId = req.params.userId
+
+    return User.findOne({ _id: userId }).then(user => {
+            res.send(user?.recipes)
+        } 
+    )
+}
+
+
+const createNewRecipe = async (req: Request, res: Response, next: NextFunction) => {
+    const { id, newRecipe } = req.body
+
+    return User.findById({ _id: id })
+        .then(user => { 
+            try {
+                user?.recipes?.push(newRecipe)
+            } catch (error) {
+                res.sendStatus(500).json({ message: `Unable to save recipe due to error: ${error}`})
+            }
+        }
+    )
+    .catch(error => res.sendStatus(500).json({ message: error.message }))
+}
+
+export default { 
+    createUser, 
+    getUserById, 
+    getAllUsers, 
+    deleteUser, 
+    loginUser,
+    getAllRecipesByUserId,
+    createNewRecipe
+}
