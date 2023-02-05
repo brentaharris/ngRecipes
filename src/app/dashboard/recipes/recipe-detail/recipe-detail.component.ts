@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Recipe, RECIPES } from '../recipeData'
+import { Recipe } from '../recipeData'
 import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
@@ -8,14 +8,14 @@ import { ActivatedRoute, Router } from '@angular/router'
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  recipes: Recipe[] = RECIPES
+  recipes: Recipe[] = []
   recipe: Recipe | undefined
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'))
-    this.recipe = this.recipes.find(recipe => recipe.id === id)
+    // this.recipe = this.recipes.find(recipe => recipe.id === id)
   }
 
   onBack(): void {

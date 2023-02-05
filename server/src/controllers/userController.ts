@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express"
 import mongoose from "mongoose"
 import { User, IUser} from "../models/user.model"
-import { IRecipe } from "../models/recipe.model"
+import { Recipe, IRecipe } from "../models/recipe.model"
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
     let { name, email, password } = req.body
@@ -86,12 +86,25 @@ const getAllRecipesByUserId = async (req: Request, res: Response, next: NextFunc
 
 
 const createNewRecipe = async (req: Request, res: Response, next: NextFunction) => {
-    const { id, newRecipe } = req.body
+    const userId = req.params.userId
 
-    return User.findById({ _id: id })
+    const newRecipe = new Recipe({
+        _id: new mongoose.Types.ObjectId,
+        title: String(req.body.title),
+        description: String(req.body.description),
+        cookTime: Number(req.body.cookTime),
+        ingredients: Array(req.body.ingredients),
+        directions: String(req.body.directions),
+        tags: Array(req.body.tags)
+    })
+    console.log(newRecipe)
+
+    return User.findOne({ _id: userId })
         .then(user => { 
             try {
                 user?.recipes?.push(newRecipe)
+                user?.save()
+
             } catch (error) {
                 res.sendStatus(500).json({ message: `Unable to save recipe due to error: ${error}`})
             }

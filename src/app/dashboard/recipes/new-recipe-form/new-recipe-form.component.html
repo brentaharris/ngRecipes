@@ -1,27 +1,27 @@
 <div class="container">
     <h1 class="text-center">Add New Recipe</h1>
     <div class="container form-container">
-        <form action="" class="form-group">
+        <form action="" class="form-group" [formGroup]="recipeForm" (ngSubmit)="handleSubmitRecipe()" autocomplete="off">
     
-            <label for="" class="form-label">Name: </label>
-            <input type="text" class="form-control">
+            <label for="title" class="form-label">Title: </label>
+            <input type="text" formControlName="title" name="title" class="form-control">
     
-            <label for="" class="form-label">Description: </label>
-            <input type="text" class="form-control">
+            <label for="description" class="form-label">Description: </label>
+            <input type="text" name="description" class="form-control" formControlName="description">
     
-            <label for="" class="form-label">Cook Time: </label>
-            <input type="text" class="form-control">
+            <label for="cookTime" class="form-label">Cook Time: </label>
+            <input type="text" name="cookTime" formControlName="cookTime" class="form-control">
     
-            <label for="" class="form-label">Ingredients: </label>
-            <input type="text" class="form-control">
+            <label for="ingredients" class="form-label">Ingredients: </label>
+            <input type="text" name="ingredients" formControlName="ingredients" class="form-control">
     
-            <label for="" class="form-label">Directions: </label>
-            <textarea type="text" class="form-control" rows="5"></textarea>
+            <label for="directions" class="form-label">Directions: </label>
+            <textarea type="text" class="form-control" name="directions" rows="5" formControlName="directions"></textarea>
 
-            <label for="" class="form-label">Tags: </label>
-            <input type="text" class="form-control" >
+            <label for="tags" class="form-label">Tags: </label>
+            <input type="text" formControlName="tags" name="tags" class="form-control" >
 
-            <button role="subtmit" class="btn btn-success">Save</button>
+            <button role="subtmit" class="btn btn-success" type="submit">Save</button>
             <button role="button" class="btn btn-secondary" (click)="onBack()">Cancel</button>
         </form>
     </div>
