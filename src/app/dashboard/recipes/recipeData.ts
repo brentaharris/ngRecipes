@@ -1,6 +1,6 @@
 export interface Recipe {
   id: string
-  name: string
+  title: string
   description: string
   recipeImg?: string
   cookTime: string

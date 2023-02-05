@@ -27,7 +27,7 @@
     <div role="button" *ngFor="let recipe of recipes" class="col-md-4 col-sm-12">
       <div class="card mb-3" [routerLink]="['/user/recipes', recipe.id]">
         <div class="card-body">
-          <h5 class="card-title">{{recipe.name}}</h5>
+          <h5 class="card-title">{{recipe.title}}</h5>
           <p class="card-text">{{recipe.description}}</p>
           <div class="" *ngFor="let tag of recipe.tags">
             <div class="badge bg-primary">{{tag}}</div>

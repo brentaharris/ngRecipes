@@ -32,9 +32,9 @@ export class NewRecipeFormComponent implements OnInit {
     if (this.recipeForm.valid) {
       this.recipeService.createRecipe(this.recipeForm.value)
 
-      // setTimeout(() => {
-      //   this.router.navigate(['user/recipes'])
-      // }, 1000);
+      setTimeout(() => {
+        this.router.navigate(['user/recipes'])
+      }, 1500);
     }
   }
 
