@@ -23,8 +23,8 @@
   <div *ngIf="recipes.length === 0">
     <h5>You have no recipes to display. <a class="link" [routerLink]="['/user/recipes/new']">Add one</a></h5>
   </div>
-  <div *ngIf="recipes">
-    <div role="button" *ngFor="let recipe of recipes" class="col-md-4 col-sm-12">
+  <div *ngIf="recipes" class="col-md-4 col-sm-12">
+    <div role="button" *ngFor="let recipe of recipes" class="">
       <div class="card mb-3" [routerLink]="['/user/recipes', recipe._id]">
         <div class="card-body">
           <h5 class="card-title">{{recipe.title}}</h5>
