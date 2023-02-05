@@ -29,17 +29,9 @@ export class RecipeService {
 	}
 
 	
-	createRecipe(formValues: any) {
+	createRecipe(formValues: any): void {
 		const currentUser = this.userService.getCurrentUser()
 
-		this.http.post(`http://localhost:3000/user/${currentUser.id}/newrecipe`, formValues).subscribe({
-			next: (response) => {
-				console.log(response)
-			},
-			error: (e) => {
-				console.log(e)
-			},
-			complete: () => {}
-		})
+		this.http.post(`http://localhost:3000/user/${currentUser.id}/newrecipe`, formValues).subscribe({})
 	}
 }

@@ -6,13 +6,14 @@
 - Implement delete all recipes button
 - Implement edit recipe functionality
 - Add delete account option to user account settings
-- Create functionality to change view style on recipe list page
 - Improve styling
 - Add Recapcha to Sign up form
 - Implement 'Invite Others' section
 - Rework Types
-- Only show navbar after user is logged in
-- Create Dark/Light Mode
+- Bug: Only show navbar after user is logged in
+- Feature: Create functionality to change view style on recipe list page
+- Feature: Create Dark/Light Mode
+- Feature: Add export/download option for individual recipe as file or picture for easy sharing
 
 ## Done:
 - Instate Route Guards
