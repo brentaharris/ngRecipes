@@ -10,10 +10,10 @@
 - Implement 'Invite Others' section
 - Rework Types
 - Migrate recipe api endpoints to recipe controller from user controller
-- Bug: Only show navbar after user is logged in
-- Feature: Create functionality to change view style on recipe list page
-- Feature: Create Dark/Light Mode
-- Feature: Add export/download option for individual recipe as file or picture for easy sharing
+- `Bug:` Only show navbar after user is logged in
+- `Feature:` Create functionality to change view style on recipe list page
+- `Feature:` Create Dark/Light Mode
+- `Feature:` Add export/download option for individual recipe as file or picture for easy sharing
 
 ## Done:
 - Instate Route Guards
