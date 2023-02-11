@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core'
+import { NgModule, isDevMode } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
 import { HttpClientModule } from '@angular/common/http'
@@ -18,7 +18,8 @@ import { SettingsComponent } from './dashboard/user/settings/settings.component'
 import { RecipeDetailComponent } from './dashboard/recipes/recipe-detail/recipe-detail.component';
 import { RecipeListComponent } from './dashboard/recipes/recipe-list/recipe-list.component';
 import { RecipeEditComponent } from './dashboard/recipes/recipe-edit/recipe-edit.component';
-import { StoreModule } from '@ngrx/store'
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { StoreModule } from '@ngrx/store'
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [AppRouteGuardService],
   bootstrap: [AppComponent]
