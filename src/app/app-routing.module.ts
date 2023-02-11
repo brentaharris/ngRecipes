@@ -9,12 +9,14 @@ import { RecipeDetailComponent } from './dashboard/recipes/recipe-detail/recipe-
 import { NewRecipeFormComponent } from './dashboard/recipes/new-recipe-form/new-recipe-form.component'
 
 import { AppRouteGuardService } from 'src/app.routeguard.service'
+import { RecipeEditComponent } from './dashboard/recipes/recipe-edit/recipe-edit.component'
 
 const routes: Routes = [
   { path: 'user/dashboard', component: DashboardComponent, canActivate: [AppRouteGuardService] },
   { path: 'user/recipes/new', component: NewRecipeFormComponent, canActivate: [AppRouteGuardService] },
-  { path: 'user/recipes', component: RecipesHomeComponent, canActivate: [AppRouteGuardService] },
+  { path: 'user/recipes/:id/edit', component: RecipeEditComponent,  canActivate: [AppRouteGuardService] },
   { path: 'user/recipes/:id', component: RecipeDetailComponent,  canActivate: [AppRouteGuardService] },
+  { path: 'user/recipes', component: RecipesHomeComponent, canActivate: [AppRouteGuardService] },
   { path: 'user/settings', component: SettingsComponent, canActivate: [AppRouteGuardService] },
   { path: 'signup', component: SignupFormComponent},
   { path: 'login', component: LoginFormComponent },

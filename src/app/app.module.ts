@@ -17,6 +17,7 @@ import { NewRecipeFormComponent } from './dashboard/recipes/new-recipe-form/new-
 import { SettingsComponent } from './dashboard/user/settings/settings.component';
 import { RecipeDetailComponent } from './dashboard/recipes/recipe-detail/recipe-detail.component';
 import { RecipeListComponent } from './dashboard/recipes/recipe-list/recipe-list.component';
+import { RecipeEditComponent } from './dashboard/recipes/recipe-edit/recipe-edit.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RecipeListComponent } from './dashboard/recipes/recipe-list/recipe-list
     NewRecipeFormComponent,
     SettingsComponent,
     RecipeDetailComponent,
-    RecipeListComponent
+    RecipeListComponent,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,

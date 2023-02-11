@@ -1,0 +1,28 @@
+<div class="container">
+    <h1 class="text-center">Edit Recipe</h1>
+    <div class="container form-container">
+        <form action="" class="form-group" [formGroup]="recipeEditForm" (ngSubmit)="handleUpdateRecipe()" autocomplete="off">
+    
+            <label for="title" class="form-label">Title: </label>
+            <input type="text" formControlName="title" name="title" class="form-control">
+    
+            <label for="description" class="form-label">Description: </label>
+            <input type="text" name="description" class="form-control" formControlName="description">
+    
+            <label for="cookTime" class="form-label">Cook Time: </label>
+            <input type="text" name="cookTime" formControlName="cookTime" class="form-control">
+    
+            <label for="ingredients" class="form-label">Ingredients: </label>
+            <input type="text" name="ingredients" formControlName="ingredients" class="form-control">
+    
+            <label for="directions" class="form-label">Directions: </label>
+            <textarea type="text" class="form-control" name="directions" rows="5" formControlName="directions"></textarea>
+
+            <label for="tags" class="form-label">Tags: </label>
+            <input type="text" formControlName="tags" name="tags" class="form-control" >
+
+            <button role="subtmit" class="btn btn-success" type="submit">Update</button>
+            <button role="button" class="btn btn-secondary" (click)="onBack()">Cancel</button>
+        </form>
+    </div>
+</div>

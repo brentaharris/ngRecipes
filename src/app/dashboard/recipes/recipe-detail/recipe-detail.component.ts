@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { RecipeService } from '../recipe.service'
 
 @Component({
-  selector: 'app-recipe-detail',
+  selector: 'app-recipe-edit',
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.css']
 })
@@ -14,8 +14,7 @@ export class RecipeDetailComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private recipeService: RecipeService
-  ) {}
+    private recipeService: RecipeService) {}
 
   ngOnInit() {
     let id = this.route.snapshot.params['id']
