@@ -9,6 +9,7 @@
 - Add Recapcha to Sign up form
 - Implement 'Invite Others' link
 - Rework Types
+- Implement better state management
 - Migrate recipe api endpoints to recipe controller from user controller
 - `Bug:` Only show navbar after user is logged in
 - `Feature:` Create functionality to change view style on recipe list page
