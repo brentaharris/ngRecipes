@@ -20,6 +20,7 @@ import { RecipeListComponent } from './dashboard/recipes/recipe-list/recipe-list
 import { RecipeEditComponent } from './dashboard/recipes/recipe-edit/recipe-edit.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { recipeReducer } from './store/recipe.reducer'
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot({}, {}),
+    StoreModule.forFeature('recipe', recipeReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [AppRouteGuardService],

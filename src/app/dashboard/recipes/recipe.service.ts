@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { tap, map } from 'rxjs/operators'
-import { Recipe } from "./recipeData"
+import { Recipe } from "./recipe.model"
 import { UserService } from "../user/user.service"
 
 @Injectable({

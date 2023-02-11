@@ -1,4 +1,4 @@
-import { Recipe } from "../recipes/recipeData"
+import { Recipe } from "../recipes/recipe.model"
 
 export interface User {
     firstName: string
