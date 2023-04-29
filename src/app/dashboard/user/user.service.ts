@@ -2,9 +2,7 @@ import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { environment } from 'src/environments/environments'
-import { parseTemplate } from '@angular/compiler'
-// import { catchError, Observable, tap, throwError } from 'rxjs'
-// import { User } from './user'
+import { User } from './user.model'
 
 @Injectable({
     providedIn: 'root'
@@ -16,9 +14,10 @@ export class UserService {
     userLogInAndRouteToDashboard(formValues: any) {
         this.http.post<any>(environment.LOGIN_URL, formValues).subscribe({
             next: (res) => {
-                const currentUser = { 
+                const currentUser: User = { 
                     id: res.user._id, 
-                    name: res.user.name, 
+                    firstName: res.user.firstName,
+                    lastName: res.user.lastName,
                     email: res.user.email, 
                     recipes: res.user.recipes
                 }
