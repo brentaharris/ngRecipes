@@ -1,9 +1,13 @@
 <div class="container signup-form-container">
     <h1>Sign up</h1>
     <form class="form-group" [formGroup]="signUpForm" (ngSubmit)="handleSignup()" autocomplete="off">
-        <label for="name" class="form-label">Name:</label>
-        <span class="text-danger" *ngIf="signUpForm.get('name')?.invalid && (signUpForm.get('name')?.dirty || signUpForm.get('name')?.touched)"> Required*</span>
-        <input type="text" formControlName="name" name="name" class="form-control" required>
+        <label for="name" class="form-label">First Name:</label>
+        <span class="text-danger" *ngIf="signUpForm.get('firstName')?.invalid && (signUpForm.get('name')?.dirty || signUpForm.get('firstName')?.touched)"> Required*</span>
+        <input type="text" formControlName="firstName" name="firstName" class="form-control" required>
+        
+        <label for="name" class="form-label">Last Name:</label>
+        <span class="text-danger" *ngIf="signUpForm.get('name')?.invalid && (signUpForm.get('name')?.dirty || signUpForm.get('lastName')?.touched)"> Required*</span>
+        <input type="text" formControlName="lastName" name="lastName" class="form-control" required>
 
         <label for="email" class="form-label">Email:</label>
         <span class="text-danger" *ngIf="signUpForm.get('email')?.invalid && (signUpForm.get('email')?.dirty || signUpForm.get('email')?.touched)"> Required*</span>
