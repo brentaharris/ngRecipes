@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
-import { tap, map } from 'rxjs/operators'
+import { map } from 'rxjs/operators'
 import { Recipe } from "./recipe.model"
 import { UserService } from "../user/user.service"
 
@@ -12,7 +12,7 @@ export class RecipeService {
 
 	constructor(private userService: UserService, private http: HttpClient) {}
 
-	
+
     getAllRecipesByUser(): Observable<Recipe[]> {
 		const currentUser = this.userService.getCurrentUser()
 

@@ -2,6 +2,7 @@ import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { environment } from 'src/environments/environments'
+import { parseTemplate } from '@angular/compiler'
 // import { catchError, Observable, tap, throwError } from 'rxjs'
 // import { User } from './user'
 
@@ -36,7 +37,10 @@ export class UserService {
         })
     }
 
-
+    /**
+     * 
+     * @returns current user logged in
+     */
     getCurrentUser() { 
         return JSON.parse(sessionStorage.getItem(environment.APP_SESSION_KEY) as string)
     }
