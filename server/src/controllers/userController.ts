@@ -4,12 +4,13 @@ import { User, IUser} from "../models/user.model"
 import { Recipe, IRecipe } from "../models/recipe.model"
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
-    let { name, email, password } = req.body
+    let { firstName, lastName, email, password } = req.body
     if(!email || !password) return res.send('Must include email or password')
 
     const user = new User({
         _id: new mongoose.Types.ObjectId(),
-        name,
+        firstName,
+        lastName,
         email,
         password
     })
@@ -84,13 +85,13 @@ const getAllRecipesByUserId = async (req: Request, res: Response, next: NextFunc
     )
 }
 
-
 const getUserRecipeById = async (req: Request, res: Response, next: NextFunction) => {
     const { userId, recipeId } = req.params
-
     return User.findOne({ _id: userId })
         .then(user => res.send(user?.recipes?.find(recipe => recipe._id == recipeId)))
 }
+
+
 
 
 const createNewRecipe = async (req: Request, res: Response, next: NextFunction) => {
@@ -121,6 +122,21 @@ const createNewRecipe = async (req: Request, res: Response, next: NextFunction) 
     .catch(error => res.sendStatus(500).json({ message: error.message }))
 }
 
+const deleteRecipeById = async (req: Request, res: Response, next: NextFunction) => {
+    // find user
+    const { userId, recipeId } = req.params
+    console.log(userId, recipeId)
+    
+    // search user recipes array to find recipe by id
+    // await User.findOne({ _id: userId })
+    //     .then(user => res.send(user?.recipes?.find(recipe => recipe._id == recipeId)))
+
+        
+    // set new recipes array without the deleted recipe
+    // return success for fail message
+}
+
+
 export default { 
     createUser, 
     getUserById, 
@@ -129,5 +145,6 @@ export default {
     loginUser,
     getAllRecipesByUserId,
     createNewRecipe,
-    getUserRecipeById
+    getUserRecipeById,
+    deleteRecipeById
 }

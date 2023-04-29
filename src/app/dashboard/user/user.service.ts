@@ -37,10 +37,10 @@ export class UserService {
     }
 
     /**
-     * 
+     * @description Checks browser session storage for user object
      * @returns current user logged in
      */
-    getCurrentUser() { 
+    getCurrentUser(): User { 
         return JSON.parse(sessionStorage.getItem(environment.APP_SESSION_KEY) as string)
     }
 

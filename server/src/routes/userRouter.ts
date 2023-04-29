@@ -10,10 +10,16 @@ router.get('/:userId/allrecipes', controller.getAllRecipesByUserId)
 
 router.get('/:userId/recipe/:recipeId', controller.getUserRecipeById)
 
+//trying to implement deleting 1 recipe by recipeId
+router.patch('/:userId/recipe/:recipeId', controller.deleteRecipeById)
+
 router.post('/:userId/newrecipe', controller.createNewRecipe)
+
 
 router.post('/signup', controller.createUser)
 router.post('/login', controller.loginUser)
+
+//?
 router.delete('/:userId', controller.deleteUser)
 
 

@@ -27,4 +27,8 @@ export class RecipeDetailComponent implements OnInit {
   onBack(): void {
     this.router.navigate(['user/recipes'])
   }
+
+  onDelete(): void {
+    console.warn("Delete Recipe not impleted yet")
+  }
 }
