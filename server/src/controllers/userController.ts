@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express"
 import mongoose from "mongoose"
 import { User, IUser} from "../models/user.model"
-import { Recipe, IRecipe } from "../models/recipe.model"
+import { Recipe } from "../models/recipe.model"
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
     let { firstName, lastName, email, password } = req.body
@@ -41,10 +41,10 @@ const getAllUsers = (req: Request, res: Response, next: NextFunction) => {
 }
 
 
-const deleteUser = (req: Request, res: Response, next: NextFunction) => {
+const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.userId
 
-    return User
+    return await User
         .findByIdAndDelete(userId)
         .then((user) => (user ? res.status(200).json({ message: "User Account Deleted"}) : res.status(404).json({ message: "User account not found" })))
         .catch((error) => res.status(500).json({ error }))
@@ -55,7 +55,7 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body
     if(!email || !password) return res.send('Must include email or password')
 
-    User.findOne({ email: email }, (error: Error, user: IUser) => {
+    await User.findOne({ email: email }, (error: Error, user: IUser) => {
   
         //compare pw
        user.comparePasswords(password, (error, isMatch) => {
@@ -79,7 +79,7 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
 const getAllRecipesByUserId = async (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.userId
 
-    return User.findOne({ _id: userId }).then(user => {
+    return await User.findOne({ _id: userId }).then(user => {
             res.send(user?.recipes)
         } 
     )
@@ -87,7 +87,7 @@ const getAllRecipesByUserId = async (req: Request, res: Response, next: NextFunc
 
 const getUserRecipeById = async (req: Request, res: Response, next: NextFunction) => {
     const { userId, recipeId } = req.params
-    return User.findOne({ _id: userId })
+    return await User.findOne({ _id: userId })
         .then(user => res.send(user?.recipes?.find(recipe => recipe._id == recipeId)))
 }
 
@@ -108,7 +108,7 @@ const createNewRecipe = async (req: Request, res: Response, next: NextFunction) 
     })
     console.log(newRecipe)
 
-    return User.findOne({ _id: userId })
+    return await User.findOne({ _id: userId })
         .then(user => { 
             try {
                 user?.recipes?.push(newRecipe)

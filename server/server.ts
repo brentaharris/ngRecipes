@@ -4,7 +4,7 @@ require('dotenv').config('/.env')
 import { NextFunction, Request, Response } from 'express'
 import http from 'http'
 import mongoose from "mongoose"
-import { router as userRouter }from './src/routes/userRouter' //?????????
+import { router as userRouter }from './src/routes/userRouter'
 
 
 const app = express()

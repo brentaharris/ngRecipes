@@ -15,28 +15,28 @@ export class RecipeService implements OnInit {
 	constructor(private userService: UserService, private http: HttpClient) {}
 
 	ngOnInit(): void {
-		//WTF not loggin
+		//WTF not logging
 		console.log(this.currentUser)
 	}
 	
     getAllRecipesByUser(): Observable<Recipe[]> {
 		return this.http.get<Recipe[]>(`http://localhost:3000/user/${this.currentUser.id}/allrecipes`)
-		.pipe(map((response: Recipe[]) => { return response }))
+		.pipe(map((response: Recipe[]) => response))
 	}
 
 
 	getRecipeById(recipeId: string): Observable<Recipe> {
 		return this.http.get<Recipe>(`http://localhost:3000/user/${this.currentUser.id}/recipe/${recipeId}`)
-		.pipe(map((response: Recipe) => { return response }))
+		.pipe(map((response: Recipe) => response))
 	}
 
 	
-	createRecipe(formValues: any): void {
+	createRecipe(formValues: FormData): void {
 		this.http.post(`http://localhost:3000/user/${this.currentUser.id}/newrecipe`, formValues).subscribe({})
 	}
 
-	//workin
-	// deleteRecipeById(recipeId: string): void {
+	//workin on
+	// deleteRecipeById(recipeId: string): Observable<Recipe[]> {
 	// 	this.http.patch(`http://localhost:3000/user/${this.currentUser.id}/recipe/${recipeId}`)
 	// }
 }
