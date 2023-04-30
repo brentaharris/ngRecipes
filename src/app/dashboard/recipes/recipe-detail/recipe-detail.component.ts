@@ -10,6 +10,7 @@ import { RecipeService } from '../recipe.service'
 })
 export class RecipeDetailComponent implements OnInit {
   recipe!: Recipe
+  id: string = this.route.snapshot.params['id']
 
   constructor(
     private router: Router,
@@ -17,9 +18,8 @@ export class RecipeDetailComponent implements OnInit {
     private recipeService: RecipeService) {}
 
   ngOnInit() {
-    let id = this.route.snapshot.params['id']
  
-    this.recipeService.getRecipeById(id).subscribe((recipe: Recipe) => {
+    this.recipeService.getRecipeById(this.id).subscribe((recipe: Recipe) => {
       this.recipe = recipe
     })
   }
@@ -29,6 +29,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onDelete(): void {
-    console.warn("Delete Recipe not impleted yet")
+    console.log('deleting recipe...', this.id)
+    this.recipeService.deleteRecipeById(this.id)
   }
 }

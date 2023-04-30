@@ -126,12 +126,23 @@ const deleteRecipeById = async (req: Request, res: Response, next: NextFunction)
     // find user
     const { userId, recipeId } = req.params
     console.log(userId, recipeId)
+
+    await User.findOne({ _id: userId})
+        .then(user => {
+            try {
+                const updatedRecipeList = user?.recipes?.filter(recipe => recipe._id === recipeId)
+                console.log(updatedRecipeList)
+                //need json response vs setting up correct recipe collection by user
+            }
+            catch {
+                console.log('something errored with finding recipe list of user')
+            }
+        })
     
     // search user recipes array to find recipe by id
     // await User.findOne({ _id: userId })
     //     .then(user => res.send(user?.recipes?.find(recipe => recipe._id == recipeId)))
 
-        
     // set new recipes array without the deleted recipe
     // return success for fail message
 }

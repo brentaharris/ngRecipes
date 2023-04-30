@@ -12,6 +12,6 @@
         <p>{{recipe.directions}}</p>
         <a role="button" class="btn btn-primary" (click)="onBack()"><i class="bi bi-chevron-left"></i> Back</a>
         <a class="btn btn-warning mx-1" role="button" [routerLink]="['edit']">Edit Recipe</a>
-        <a class="btn btn-danger mx-1" role="button" (click)="onDelete()">Delete Recipe</a>
+        <button class="btn btn-danger mx-1" role="button" (click)="onDelete()">Delete Recipe</button>
     </div>
 </div>

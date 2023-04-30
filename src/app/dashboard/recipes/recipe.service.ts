@@ -36,7 +36,9 @@ export class RecipeService implements OnInit {
 	}
 
 	//workin on
-	// deleteRecipeById(recipeId: string): Observable<Recipe[]> {
-	// 	this.http.patch(`http://localhost:3000/user/${this.currentUser.id}/recipe/${recipeId}`)
-	// }
+	deleteRecipeById(recipeId: string): any {
+		this.http.delete(`http://localhost:3000/user/${this.currentUser.id}/recipe/${recipeId}`)
+
+
+	}
 }
