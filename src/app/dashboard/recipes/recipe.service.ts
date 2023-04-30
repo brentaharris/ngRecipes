@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from "@angular/core"
+import { Injectable } from "@angular/core"
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
@@ -9,16 +9,12 @@ import { User } from "../user/user.model"
 @Injectable({
 	providedIn: 'root'
 })
-export class RecipeService implements OnInit {
+export class RecipeService {
 	currentUser: User =  this.userService.getCurrentUser()
 
 	constructor(private userService: UserService, private http: HttpClient) {}
 
-	ngOnInit(): void {
-		//WTF not logging
-		console.log(this.currentUser)
-	}
-	
+
     getAllRecipesByUser(): Observable<Recipe[]> {
 		return this.http.get<Recipe[]>(`http://localhost:3000/user/${this.currentUser.id}/allrecipes`)
 			.pipe(map((response: Recipe[]) => response))
