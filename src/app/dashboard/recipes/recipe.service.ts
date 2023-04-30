@@ -21,24 +21,22 @@ export class RecipeService implements OnInit {
 	
     getAllRecipesByUser(): Observable<Recipe[]> {
 		return this.http.get<Recipe[]>(`http://localhost:3000/user/${this.currentUser.id}/allrecipes`)
-		.pipe(map((response: Recipe[]) => response))
+			.pipe(map((response: Recipe[]) => response))
 	}
 
 
 	getRecipeById(recipeId: string): Observable<Recipe> {
 		return this.http.get<Recipe>(`http://localhost:3000/user/${this.currentUser.id}/recipe/${recipeId}`)
-		.pipe(map((response: Recipe) => response))
+			.pipe(map((response: Recipe) => response))
 	}
 
 	
-	createRecipe(formValues: FormData): void {
-		this.http.post(`http://localhost:3000/user/${this.currentUser.id}/newrecipe`, formValues).subscribe({})
+	createRecipe(formValues: any): void {
+		this.http.post(`http://localhost:3000/user/${this.currentUser.id}/newrecipe`, formValues).subscribe()
 	}
 
 	//workin on
 	deleteRecipeById(recipeId: string): any {
-		this.http.delete(`http://localhost:3000/user/${this.currentUser.id}/recipe/${recipeId}`)
-
-
+		this.http.delete(`http://localhost:3000/user/${this.currentUser.id}/recipe/${recipeId}`).subscribe()
 	}
 }

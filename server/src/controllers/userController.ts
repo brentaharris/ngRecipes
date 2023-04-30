@@ -3,10 +3,10 @@ import mongoose from "mongoose"
 import { User, IUser} from "../models/user.model"
 import { Recipe } from "../models/recipe.model"
 
-const createUser = async (req: Request, res: Response, next: NextFunction) => {
+const createUser = (req: Request, res: Response, next: NextFunction) => {
     let { firstName, lastName, email, password } = req.body
     if(!email || !password) return res.send('Must include email or password')
-
+    console.log(req.body)
     const user = new User({
         _id: new mongoose.Types.ObjectId(),
         firstName,
@@ -14,6 +14,7 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
         email,
         password
     })
+    console.log(user)
     //TODO add code to check if user exsists first before saving.
     return user
             .save()
@@ -41,21 +42,21 @@ const getAllUsers = (req: Request, res: Response, next: NextFunction) => {
 }
 
 
-const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+const deleteUser = (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.userId
 
-    return await User
+    return User
         .findByIdAndDelete(userId)
         .then((user) => (user ? res.status(200).json({ message: "User Account Deleted"}) : res.status(404).json({ message: "User account not found" })))
         .catch((error) => res.status(500).json({ error }))
 }
 
 /// ********************************* ///
-const loginUser = async (req: Request, res: Response, next: NextFunction) => {
+const loginUser = (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body
     if(!email || !password) return res.send('Must include email or password')
 
-    await User.findOne({ email: email }, (error: Error, user: IUser) => {
+    User.findOne({ email: email }, (error: Error, user: IUser) => {
   
         //compare pw
        user.comparePasswords(password, (error, isMatch) => {
@@ -76,22 +77,20 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
 
 
 /* RECIPE FUNCTIONS  */
-const getAllRecipesByUserId = async (req: Request, res: Response, next: NextFunction) => {
+const getAllRecipesByUserId = (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.userId
 
-    return await User.findOne({ _id: userId }).then(user => {
+    return User.findOne({ _id: userId }).then(user => {
             res.send(user?.recipes)
         } 
     )
 }
 
-const getUserRecipeById = async (req: Request, res: Response, next: NextFunction) => {
+const getUserRecipeById = (req: Request, res: Response, next: NextFunction) => {
     const { userId, recipeId } = req.params
-    return await User.findOne({ _id: userId })
+    return User.findOne({ _id: userId })
         .then(user => res.send(user?.recipes?.find(recipe => recipe._id == recipeId)))
 }
-
-
 
 
 const createNewRecipe = async (req: Request, res: Response, next: NextFunction) => {
@@ -108,43 +107,51 @@ const createNewRecipe = async (req: Request, res: Response, next: NextFunction) 
     })
     console.log(newRecipe)
 
-    return await User.findOne({ _id: userId })
+    return User.findOne({ _id: userId })
         .then(user => { 
             try {
                 user?.recipes?.push(newRecipe)
                 user?.save()
-
             } catch (error) {
                 res.sendStatus(500).json({ message: `Unable to save recipe due to error: ${error}`})
             }
-        }
-    )
-    .catch(error => res.sendStatus(500).json({ message: error.message }))
+        })
+        .catch(error => res.sendStatus(500).json({ message: error.message }))
 }
 
-const deleteRecipeById = async (req: Request, res: Response, next: NextFunction) => {
-    // find user
+const deleteRecipeById = (req: Request, res: Response, next: NextFunction) => {
+    
     const { userId, recipeId } = req.params
     console.log(userId, recipeId)
 
-    await User.findOne({ _id: userId})
-        .then(user => {
-            try {
-                const updatedRecipeList = user?.recipes?.filter(recipe => recipe._id === recipeId)
-                console.log(updatedRecipeList)
-                //need json response vs setting up correct recipe collection by user
-            }
-            catch {
-                console.log('something errored with finding recipe list of user')
-            }
-        })
-    
-    // search user recipes array to find recipe by id
-    // await User.findOne({ _id: userId })
-    //     .then(user => res.send(user?.recipes?.find(recipe => recipe._id == recipeId)))
-
-    // set new recipes array without the deleted recipe
-    // return success for fail message
+    // find user
+    User.findOne({ _id: userId}, (err:any, result:any) => {
+        if(err){
+            console.error("Cannot get user", err)
+            res.status(500).end()
+        } else {
+            const recipe = result.recipes.find((r:any) => r._id == recipeId)
+            console.log(recipe)
+            //find user and recipe
+            User.findOneAndUpdate(
+                { _id: userId},
+                {
+                    $pull: {
+                        recipes: recipe, //$pull deletes recipe from specific user
+                    },
+                },
+                { new: true }, //determines if operation returns the new result
+                (err, result) => {
+                    if(err) {
+                        console.error("Cannot updated user recipe", err)
+                        res.status(500).end()
+                    } else {
+                        res.status(200).json({ message: "Recipe Deleted"})
+                    }
+                }
+            )
+        }
+    })
 }
 
 
