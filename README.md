@@ -2,7 +2,6 @@
 
 ## TODO:
 - Implement recipe edit ability on recipe detail pages
-- Implement delete recipe button
 - Implement delete all recipes button
 - Add delete account option to user account settings
 - Improve styling/css
@@ -22,3 +21,4 @@
 - Implement add recipe functionality
 - Migrate user login ability to user service
 - Display user recipes, if no recipes, report empty recipe list
+- Implement delete recipe button
