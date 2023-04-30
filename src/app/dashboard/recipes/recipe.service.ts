@@ -14,25 +14,21 @@ export class RecipeService {
 
 	constructor(private userService: UserService, private http: HttpClient) {}
 
-
     getAllRecipesByUser(): Observable<Recipe[]> {
 		return this.http.get<Recipe[]>(`http://localhost:3000/user/${this.currentUser.id}/allrecipes`)
 			.pipe(map((response: Recipe[]) => response))
 	}
-
 
 	getRecipeById(recipeId: string): Observable<Recipe> {
 		return this.http.get<Recipe>(`http://localhost:3000/user/${this.currentUser.id}/recipe/${recipeId}`)
 			.pipe(map((response: Recipe) => response))
 	}
 
-	
-	createRecipe(formValues: any): void {
+	createRecipe(formValues: FormData): void {
 		this.http.post(`http://localhost:3000/user/${this.currentUser.id}/newrecipe`, formValues).subscribe()
 	}
 
-	//workin on
-	deleteRecipeById(recipeId: string): any {
+	deleteRecipeById(recipeId: string): void {
 		this.http.delete(`http://localhost:3000/user/${this.currentUser.id}/recipe/${recipeId}`).subscribe()
 	}
 }
