@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" (load)="getUserData()">
     <h1>Welcome {{ currentUser.firstName }} {{ currentUser.lastName }}</h1>
     <hr>
     <div class="container"> 
         
-        <h2>Total Recipes: {{ totalNumberOfRecipes }}</h2>
+        <h2>Total Recipes: {{ totalNumberOfRecipes$ }}</h2>
     </div>
 </div>
