@@ -12,13 +12,17 @@ export class RecipeDetailComponent implements OnInit {
   recipe!: Recipe
   id: string = this.route.snapshot.params['id']
 
+  // errorMessage!: string
+  // displaySuccess: boolean = false
+  // displayError: boolean = false
+  // isLoading: boolean = false
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private recipeService: RecipeService) {}
 
   ngOnInit() {
- 
     this.recipeService.getRecipeById(this.id).subscribe((recipe: Recipe) => {
       this.recipe = recipe
     })

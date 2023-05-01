@@ -130,14 +130,14 @@ const deleteRecipeById = (req: Request, res: Response, next: NextFunction) => {
             console.error("Cannot get user", err)
             res.status(500).end()
         } else {
-            const recipe = result.recipes.find((r:any) => r._id == recipeId)
-            console.log(recipe)
+            const recipeToDelete = result.recipes.find((r:any) => r._id == recipeId)
+            console.log(recipeToDelete)
             //find user and recipe
             User.findOneAndUpdate(
                 { _id: userId},
                 {
                     $pull: {
-                        recipes: recipe, //$pull deletes recipe from specific user
+                        recipes: recipeToDelete, //$pull deletes recipe from specific user
                     },
                 },
                 { new: true }, //determines if operation returns the new result
