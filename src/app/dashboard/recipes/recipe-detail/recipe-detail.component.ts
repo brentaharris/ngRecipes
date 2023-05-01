@@ -31,5 +31,9 @@ export class RecipeDetailComponent implements OnInit {
   onDelete(): void {
     console.log('deleting recipe...', this.id)
     this.recipeService.deleteRecipeById(this.id)
+
+    setTimeout(() => {
+      this.router.navigate(['user/recipes'])
+    }, 1000)
   }
 }
