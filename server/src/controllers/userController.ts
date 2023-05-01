@@ -120,11 +120,11 @@ const createNewRecipe = async (req: Request, res: Response, next: NextFunction) 
 }
 
 const deleteRecipeById = (req: Request, res: Response, next: NextFunction) => {
-    
+
     const { userId, recipeId } = req.params
     console.log(userId, recipeId)
 
-    // find user
+    // check if user exsists
     User.findOne({ _id: userId}, (err:any, result:any) => {
         if(err){
             console.error("Cannot get user", err)
