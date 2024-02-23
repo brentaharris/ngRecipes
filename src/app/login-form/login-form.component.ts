@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { Form, FormControl, FormGroup } from '@angular/forms'
 import { Router } from '@angular/router'
-import { UserService } from '../dashboard/user/user.service'
 
 @Component({
   selector: 'app-login-form',
@@ -13,21 +11,19 @@ import { UserService } from '../dashboard/user/user.service'
 })
 export class LoginFormComponent implements OnInit {
   loginForm!: FormGroup
-  loginMessage!: any
 
-  constructor(private userService: UserService) {}
+  constructor(private router: Router) {}
 
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required)
+      username: new FormControl(),
+      password: new FormControl()
     })
   }
 
-  handleLogin(): any {
-    if (this.loginForm.valid) {
-      this.userService.userLogInAndRouteToDashboard(this.loginForm.value)
-    }
+  handleLogin(): void {
+    console.log(this.loginForm.value)
+    this.router.navigate(['/dashboard'])
   }
 }

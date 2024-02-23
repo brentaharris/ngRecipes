@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { FormGroup, FormControl, Validators } from '@angular/forms'
-import { HttpClient } from '@angular/common/http'
+import { FormGroup, FormControl } from '@angular/forms'
 
 @Component({
   templateUrl: './signup-form.component.html',
@@ -11,56 +10,22 @@ import { HttpClient } from '@angular/common/http'
 })
 export class SignupFormComponent implements OnInit {
   signUpForm!: FormGroup
-  signupMessage!: any
-  errorMessage!: string
-  displaySuccess: boolean = false
-  displayError: boolean = false
-  isLoading: boolean = false
-  signupUrl: string = 'http://localhost:3000/user/signup'
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required)
+      username: new FormControl(),
+      password: new FormControl()
     })
   }
 
-  handleSignup(): any {
-    if (this.signUpForm.valid) {
-      this.isLoading = true
-      this.http.post<any>(this.signupUrl, this.signUpForm.value).subscribe({
-        next: (res) => {
-          console.log(res)
-        },
-        error: (e) => {
-          console.error(e)
-          this.displayError = true
-          this.isLoading = false
-          this.errorMessage = "Signup Error"
-          setTimeout(() => {
-            this.displayError = false
-          }, 3000)
-        },
-        complete: () => {
-          this.displaySuccess = true
-          this.isLoading = false
-          this.signupMessage = 'User signup success'
-          //if sign up user completes w/o error, navigate to login page
-          setTimeout(() => {
-            this.router.navigate(['/login'])
-          }, 3000);
-        }
-      })
-    }
+  handleSignUp():void {
+    console.log('You have successfully signed up')
+    this.router.navigate(['/login'])
   }
 
-
-  cancel(): void {
+  cancel() {
     this.router.navigate(['/login'])
   }
 }

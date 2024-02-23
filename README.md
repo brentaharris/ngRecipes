@@ -1,24 +1,27 @@
-# Recipes App
+# Recipes
 
-## TODO:
-- Implement recipe edit ability on recipe detail pages
-- Implement delete all recipes button
-- Add delete account option to user account settings
-- Improve styling/css
-- Add Recapcha to Sign up form
-- Implement 'Invite Others' link
-- Rework Types
-- Implement better state management
-- Migrate recipe api endpoints to recipe controller from user controller
-- `Bug:` Only show navbar after user is logged in
-- `Feature:` Create functionality to change view style on recipe list page
-- `Feature:` Create Dark/Light Mode
-- `Feature:` Add toast notifications sitewide
-- `Feature:` Add export/download option for individual recipe as file or picture for easy sharing
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
 
-## Done:
-- Instate Route Guards
-- Implement add recipe functionality
-- Migrate user login ability to user service
-- Display user recipes, if no recipes, report empty recipe list
-- Implement delete recipe button
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
